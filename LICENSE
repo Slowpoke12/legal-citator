@@ -146,7 +146,8 @@
       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
       implied, including, without limitation, any warranties or conditions
       of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
+
+PARTICULAR PURPOSE. You are solely responsible for determining the
       appropriateness of using or redistributing the Work and assume any
       risks associated with Your exercise of permissions under this License.
 
@@ -172,6 +173,15 @@
       defend, and hold each Contributor harmless for any liability
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
+      
+  10. The terms of this license does not apply to the document 'Sample.docx,' 
+      which is stored on this repository and is provided by the author for
+      the purposes of testing the legal-citator program.  This document may 
+      be used for testing legal-citator, and may be disseminated in current
+      form with attribution. When published, the author (theodore rostow) 
+      and the yale journal on regulation will jointly hold copyrights 
+      with additional terms and conditions that apply to the published 
+      document, but not 'Sample.docx.'
 
    END OF TERMS AND CONDITIONS
 
