@@ -1,0 +1,37 @@
+Design:
+
+Legal-citator uses a fairly simple design.  One of the chief goals is expandability.  Because the rules of legal citation contain thousands of individual rules, the program establishes baseline functionality—converting a document to html and collecting all footnotes—and then creates the ability to add additional rules into the program.
+
+Main():
+
+The program begins by loading table 13, which contains the abbreviations for legal periodicals.   This is defined in a subsequent function.
+
+The program then takes a sample word document, Sample.docx, which is a draft of a 50 page legal paper that I am writing.  Any draft of a legal paper with footnotes that attempt to follow the rules of legal citation can serve as an effective sample.  The program converts Sample.docx into an html file.
+
+The program then uses Beautiful Soup to structure the html file and then collects all of the footnotes in the document.  Main then runs through each note and performs formatting checks on each, defined in a subsequent function.
+
+Load_table(table_13 ="table13.txt"):
+	This code is similar to the good and bad word list loading functions in the problem set sentiments.  This function removes white space and other issues from each line in table 13, which is held in a separate txt file—table13.txt—and adds them to a set, which is defined as a global variable.  
+
+Check(note):
+	This function holds all of the citation checks in the document as boolean searches.  At present, there are two citation checks, defined subsequently.  If either check returns False for any footnote, check prints an error message that informs the user of the error type and footnote in which the error occurred.  Other checks that will be added in the future will be added here.  
+
+See_eg(note):
+	This function identifies in each footnote the collection of sources with “see” and “eg” in immediate proximity.  This is completed through a quite complicated regular expression.  The function will then search the footnote for a correct occurrence of “[S or s]ee, e.g.,” and, if the two expressions do not match, the function will print an error message with the footnote number.  
+	This function contains an error that leaves the function flawed but nonetheless useful to the editor.  The error is a false positive—if there is one correctly formatted see, e.g., in the footnote, it will return positive.  This feature is dangerous to an editor, and will need to be fixed in later editing rounds, but will nonetheless catch see, e.g., mistakes that might otherwise result in errors (it caught 4 see, e.g., errors in the sample document that I had not previously identified. 
+
+Bad_apost(note)
+
+	This function searches the footnote for any instance of a straight (uncurved) apostrophe and prints an error message with the footnote number if a straight apostrophe exists.
+
+AbbrevTable13(note):
+	This function identifies all instances in the footnote where the text takes the following form: “, <number> [...] <number>”.   (This format is common in legal citations, for example: 52 Stan. L. Rev. 1373 or 717 F.Supp.2d 9651, and table 13 contains the abbreviations for the for the former type of grouping, but not the latter—this function attempts to distinguish the two).
+	For each instance of this form, lets use “, 52 Stan. L. Rev. 1373” for example, the function creates two strings.  First it creates a string with the full cite without the comma—52 Stan. L. Rev. 1373.  This cite is termed the “courtListener_cite.”  The second cite, the “payload” is the bare essentials—Stan. L. Rev. 
+	The function first checks if the “payload” exists in the set of table 13 abbreviations.  If it does not, the function will check if the “courtListener_cite” will identify a case in the open U.S. case database, CourtListener.  If it exists in neither location, the function will print an error message with the footnote number.
+
+***
+
+	The function is designed to produce some false negatives due to the limits of the CourtListener database, the limits of the table 13 list of periodicals, and the fact that some case cites are proprietary.
+
+Check_page(courtListener_cite):
+	This function takes the courtListener_cite and runs it though the CourtListener database, using a get request. The program will check if the url with the courtListener_cite generated a “1 Opinion” response, which happens if the cite corresponds to a specific court case.  If it does, the program will return “True” to indicate that the possible cite is not an incorrect abbreviation under Table 13.
