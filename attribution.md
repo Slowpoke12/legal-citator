@@ -11,4 +11,4 @@ Other code attribution is specified in line.
 
 # Special thanks
 
-Special thanks to Shreyas Tirumala and the CS50 Office Hours team, Pablo Arredondo, Nathan Naze, Carl Malamud, Chris Sprigman, and everyone who has worked to free the law.
+Special thanks to Shreyas Tirumala and the CS50 Office Hours team, Pablo Arredondo, Nathan Naze, Carl Malamud, Chris Sprigman, Kirk Sigmon, and everyone who has worked to free the law.
