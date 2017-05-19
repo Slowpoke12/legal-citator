@@ -1,0 +1,40 @@
+Total Stats:
+171 BB checks:
+145 true positives (no error on correct citations) 
+9 true negatives (caught correct mistake)
+7 unexpected false negatives (3 distinct bugs)
+10 expected false negatives (limits in the scope of the free case database and the scope of table 13�s list of non-law journal abbreviations).  
+
+List of bugs:
+Footnote 10: NW. J. INT�L L. & BUS.  =>need to figure out why ' != � and how to fix it.
+Footnote 13:  Nw. J. Int�l L. & Bus.
+Footnote 22: J.L. ECON. & POL�Y 
+Footnote 26: J.L. ECON. & POL�Y 
+Footnote 157: J.L. Econ. & Pol�y 
+Footnote 159: J.L. ECON. & POL�Y 
+Footnote 161: Nw. J. Int�l L. & Bus.
+
+Footnote 215: 15 (Apr. 27 => one of the (stunningly, amazingly few!!!) regex errors that collects a type of source just totally unrelated to the mission.  The whole source is 126 YALE L. J. FORUM 8, 15 (Apr. 27, 2016), and the program collects two possible cites�Yale L. J. Forum (correct); and 15 (Apr. 27 (incorrect!).  YLJ Forum is one of the few forums that requires days so this should not be a common bug, but this is probably an error that a more well-designed Regex code could ignore.  
+
+Expected Fails (better databases would catch error):
+Footnote 11: 71 Am. Econ. Rev. 405 => this is not in table 13, expected to fail
+Footnote 11:  2013 WL 6248499 => proprietary reporter number (can only work in westlaw which is paywalled).
+Footnote 29: 816 A.2d 1001 => this case does not exist in the CourtListener database, expected fail
+Footnote 53: 829 F.3d 197 => case not on CourtListener (only recently decided�fall 2016)
+Footnote 84:  2016 WL 2759289 => proprietary reporter number (can only work in westlaw which is paywalled).
+Footnote 104: 107 PNAS 5334  => reporter for a non-law journal, not in table 13
+Footnote 114: J. Mo. B. => reporter for a non-law journal, not in table 13
+Footnote 158: Competition Policy Int'l => reporter for a non-law journal, not in table 13
+Footnote 222: I.E.R. Cas. (BNA) =>international court case, not on CourtListener
+
+
+Successful fails (caught an actual bluebooking mistake, in a really well bluebooked paper):
+Footnote 20: HARV. L. REV. F. =>should be Title case + smallcaps, not all caps (HARV. L. REV. F.)
+Footnote 23: Ind. L. J. => no space between L. and J. (Ind. L.J.)
+Footnote 33: See, e.g., should be See, e.g., 
+Footnote 97: See e.g., should be See, e.g., 
+Footnote 124:  STAN. L. REV. =>should be Title case + smallcaps, not all caps (STAN. L. REV.)
+FOOTNOTE 130: See e.g. should be See, e.g.,
+Footnote 133: See e.g., should be See, e.g.,
+Footnote 154: HASTINGS COMM. & ENT L.J. =>needs period (HASTINGS COMM. & ENT. L.J.)
+Footnote 179: STAN. L. REV. =>should be Title case + smallcaps, not all caps (STAN. L. REV.)
